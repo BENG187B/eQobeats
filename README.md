@@ -12,8 +12,10 @@
     
     2) Clean and repuild the project
 # Steps to use
-    1) Make sure the phone is connected to the Zephyr HxM prior to opening'
+    1) Make sure the phone is connected to the Zephyr HxM prior to opening
     
     2) Place a text file named "neuroscale_authorization.txt" that contains your NeuroScale authorization token on the root of your device storage
     
-    3) Run the app
+    3) Install Prestissimo from the Play store
+    
+    4) Run the app
