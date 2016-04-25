@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/pref_update_setting" >
+        <ListPreference
+            android:key="prefSyncFrequency"
+            android:entries="@array/syncFrequency"
+            android:summary="@string/pref_sync_frequency_summary"
+            android:entryValues="@array/syncFrequencyValues"
+            android:title="@string/pref_sync_frequency"
+            android:defaultValue="0"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_user_profile" >
+        <EditTextPreference
+            android:title="@string/pref_user_name"
+            android:summary="@string/pref_user_name_summary"
+            android:key="prefUsername"
+            android:defaultValue="75"
+            android:inputType="number"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

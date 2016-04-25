@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="syncFrequency">
+        <item name="0">Match Heart Rate</item>
+        <item name="1">Control Heart Rate</item>
+    </string-array>
+    <string-array name="syncFrequencyValues">
+        <item name="0">0</item>
+        <item name="1">1</item>
+    </string-array>
+
+</resources>

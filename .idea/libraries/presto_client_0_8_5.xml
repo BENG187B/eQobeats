@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="presto_client-0.8.5">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/lib/presto_client-0.8.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
