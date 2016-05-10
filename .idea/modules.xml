@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/QuspMusic - Ready to Compile.iml" filepath="$PROJECT_DIR$/QuspMusic - Ready to Compile.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eQobeats.iml" filepath="$PROJECT_DIR$/eQobeats.iml" />
     </modules>
   </component>
 </project>

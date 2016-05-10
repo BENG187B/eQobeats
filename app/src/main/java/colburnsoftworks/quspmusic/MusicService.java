@@ -1,6 +1,8 @@
 package colburnsoftworks.quspmusic;
 
+import android.app.Activity;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import java.util.ArrayList;
@@ -16,6 +18,8 @@ import com.aocate.media.MediaPlayer;
 import java.util.Random;
 import android.app.Notification;
 import android.app.PendingIntent;
+import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * Created by Admin on 1/13/2016.
@@ -36,11 +40,14 @@ public class MusicService extends Service implements
     private final IBinder musicBind = new MusicBinder();
     //title of current song
     private String songTitle="";
+    private String songArtist="";
+    private String songAlbum="";
     //notification id
     private static final int NOTIFY_ID=1;
     //shuffle flag and random
     private boolean shuffle=false;
     private Random rand;
+    private Context ctx;
 
 
     public void onCreate(){
@@ -69,12 +76,22 @@ public class MusicService extends Service implements
         songs=theSongs;
     }
 
+    public void setContext(Context context) {
+        ctx = context;
+    }
+
     public void changeSpeed(float speed) {
         System.out.println("Speed factor is: " + speed);
         if (playbackSpeed!=speed){
             System.out.println("Changing playback speed to: " + speed);
             playbackSpeed = speed;
             player.setPlaybackSpeed(playbackSpeed);
+            player.setVolume(1.0f, 0f);
+
+            if (ctx != null) {
+                TextView titleText = (TextView) ((Activity) ctx).findViewById(R.id.playbackSpeed);
+                titleText.setText("Playback Speed = " + String.format(java.util.Locale.US,"%.2f", playbackSpeed));
+            }
 
             //---------------- Gradually approaches the playback speed
             /*int sign = (int) Math.signum(speed-playbackSpeed);
@@ -101,6 +118,7 @@ public class MusicService extends Service implements
         Song playSong = songs.get(songPosn);
         // set song title
         songTitle=playSong.getTitle();
+        songArtist=playSong.getArtist();
         //get id
         long currSong = playSong.getID();
         //set uri
@@ -218,5 +236,13 @@ public class MusicService extends Service implements
     @Override
     public void onDestroy() {
         stopForeground(true);
+    }
+
+    public String getSongTitle() {
+        return songTitle;
+    }
+
+    public String getSongArtist() {
+        return songArtist;
     }
 }

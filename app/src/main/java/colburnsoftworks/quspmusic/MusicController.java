@@ -2,12 +2,16 @@ package colburnsoftworks.quspmusic;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.provider.MediaStore;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.MediaController;
 import android.widget.Toast;
 
@@ -16,44 +20,43 @@ import android.widget.Toast;
  */
 public class MusicController extends MediaController {
 
-    private Button fullscreenButton;
+    public ImageButton fullscreenButton;
+    private Context ctx;
     public MusicController(Context context) {
-        super(context);
+        super(context, false);
+        ctx = context;
     }
+
 
     @Override
     public void setAnchorView(View view) {
         super.setAnchorView(view);
 
-        Button fullscreenButton = new Button(getContext());
-        fullscreenButton.setText("Fullscreen");
-        fullscreenButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
+        fullscreenButton = new ImageButton(getContext());
+        fullscreenButton.setImageResource(R.drawable.fullscreen);
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         params.gravity = Gravity.RIGHT;
+        params.setMargins(0,0,0,0);
         addView(fullscreenButton, params);
+        fullscreenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleFullscreen();
+            }
+        });
     }
 
     /*@Override
     public void hide() {
-        //do Nothing
     }*/
 
-    //Handle BACK button
-    /*@Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        if(event.getKeyCode() == KeyEvent.KEYCODE_BACK){
-            super.hide();//Hide mediaController
-            ((Activity) getContext()).finish();
-            //finish();//Close this activity
-            return true;//If press Back button, finish here
+    public void toggleFullscreen(){
+        if (ctx.getClass().getSimpleName().equals("MediaInfo")) {
+            Intent intent = new Intent(ctx, MainActivity.class);
+            ctx.startActivity(intent);
+        } else {
+            Intent intent = new Intent(ctx, MediaInfo.class);
+            ctx.startActivity(intent);
         }
-        //If not Back button, other button (volume) work as usual.
-        return super.dispatchKeyEvent(event);
-    }*/
-
-
+    }
 }

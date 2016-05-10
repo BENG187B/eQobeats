@@ -1,0 +1,86 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="#303F9F"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="colburnsoftworks.quspmusic.MediaInfo"
+    tools:showIn="@layout/activity_media_info"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="30dp"
+        android:text="BPM = 00"
+        android:id="@+id/bpm"
+        android:layout_gravity="center_horizontal" />
+
+    <ImageView
+        android:layout_width="315dp"
+        android:layout_height="245dp"
+        android:id="@+id/imageView2"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/logo_colored" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="30dp"
+        android:textColor="@android:color/white"
+        android:text="Playback Speed = 1.00"
+        android:paddingBottom="@dimen/activity_horizontal_margin"
+        android:id="@+id/playbackSpeed"
+        android:layout_gravity="center_horizontal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@android:color/black"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:gravity="center|bottom"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/white"
+            android:background="@android:color/black"
+            android:paddingLeft="@dimen/activity_vertical_margin"
+            android:paddingTop="@dimen/activity_horizontal_margin"
+            android:text="Song Title"
+            android:id="@+id/songTitle"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/white"
+            android:background="@android:color/black"
+            android:paddingLeft="@dimen/activity_vertical_margin"
+            android:paddingTop="@dimen/activity_horizontal_margin"
+            android:text="Artist - Album"
+            android:id="@+id/artistAlbum" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="300px"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/actionSpace"/>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/bottomSpace"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -26,6 +26,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.os.IBinder;
 import android.content.ComponentName;
@@ -61,10 +62,10 @@ public class MainActivity extends AppCompatActivity
     // Music service variables
     public static MusicService musicSrv;
     private Intent playIntent;
-    private boolean musicBound = false;
+    public static boolean musicBound = false;
 
     // HxM service variables
-    private HxMService hxmSrv;
+    public static HxMService hxmSrv;
     private Intent hxmIntent;
     private boolean hxmBound = false;
 
@@ -249,16 +250,6 @@ public class MainActivity extends AppCompatActivity
         Uri musicUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         Cursor musicCursor = musicResolver.query(musicUri, null, null, null, null);
 
-        //Retrieve song info of .wav files
-        /*ContentResolver musicResolver = getContentResolver();
-        Uri musicUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-        String[] projection = null;
-        String sortOrder = null;
-        String selectionMimeType = MediaStore.Files.FileColumns.MIME_TYPE + "=?";
-        String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension("wav");
-        String[] selectionArgsWav = new String[]{ mimeType };
-        Cursor musicCursor = musicResolver.query(musicUri, null, selectionMimeType, selectionArgsWav, null);*/
-
         //Iterate over results
         if (musicCursor != null && musicCursor.moveToFirst()) {
             //get columns
@@ -292,10 +283,14 @@ public class MainActivity extends AppCompatActivity
                 setController();
                 playbackPaused = false;
             }
-            controller.show(0);
+            Intent intent = new Intent(getApplicationContext(), MediaInfo.class);
+            startActivity(intent);
         } else {
             Toast.makeText(this, "The neuroservice is not ready yet. Please wait for 30s and try again", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void showMediaInfo() {
     }
 
     //play next
@@ -305,7 +300,7 @@ public class MainActivity extends AppCompatActivity
             setController();
             playbackPaused = false;
         }
-        controller.show(0);
+        controller.show();
     }
 
     //play previous
@@ -315,7 +310,7 @@ public class MainActivity extends AppCompatActivity
             setController();
             playbackPaused = false;
         }
-        controller.show(0);
+        controller.show();
     }
 
     // Hamburger helper method

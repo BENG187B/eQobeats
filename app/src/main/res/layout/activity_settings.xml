@@ -94,7 +94,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="left|start"
         android:background="#ffeeeeee"
-        android:stackFromBottom="true"
+        android:stackFromBottom="false"
         />
 
 </android.support.v4.widget.DrawerLayout>

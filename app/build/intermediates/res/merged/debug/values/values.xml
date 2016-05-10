@@ -322,7 +322,7 @@
         code provided by tutsplus.com; teamtreehouse.com; and stackexchange\n\nOur team would like
         to extend a special thanks to Dr. Pedro Cabrales and Dr. Tim Mullen</string>
     <string name="action_settings">Settings</string>
-    <string name="app_name">Qusp Music</string>
+    <string name="app_name">eQobeats</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
     <string name="auth_google_play_services_client_facebook_display_name">Facebook</string>
     <string name="auth_google_play_services_client_google_display_name">Google</string>
@@ -387,6 +387,7 @@
     <string name="pref_user_profile">User Settings</string>
     <string name="settings_text">This is the settings page for the application Qusp Music</string>
     <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="title_activity_media_info">eQobeats</string>
     <string name="title_activity_settings">Settings</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>

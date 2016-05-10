@@ -1,5 +1,6 @@
 package colburnsoftworks.quspmusic;
 
+import android.app.Activity;
 import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -50,6 +51,7 @@ public class HxMService extends Service {
     private int _beatNumber=0;
     private List<Integer> heartBeats = new ArrayList<>();
     private int hxmCounter=0;
+    private Context ctx;
 
     public HxMService() {
     }
@@ -57,7 +59,6 @@ public class HxMService extends Service {
     public void onCreate(){
         // create the service
         super.onCreate();
-
         // Setup hxm
         hxmSetup();
 
@@ -203,6 +204,10 @@ public class HxMService extends Service {
         }
     }
 
+    public void setContext(Context context) {
+        ctx = context;
+    }
+
     final Handler Newhandler = new Handler() {
         public void handleMessage(Message msg) {
             // Increment counter to control message size
@@ -217,6 +222,10 @@ public class HxMService extends Service {
                     heartRate = msg.getData().getInt("HeartRate");
                     if (heartRate<0) {
                         heartRate += 256;
+                    }
+                    if (ctx != null) {
+                        TextView titleText = (TextView) ((Activity) ctx).findViewById(R.id.bpm);
+                        titleText.setText("BPM = " + heartRate);
                     }
                     //System.out.println("Got heart rate, it's " + String.valueOf(heartRate));
 
@@ -247,6 +256,9 @@ public class HxMService extends Service {
 
                                 // Update to the new heart rate and then record a new data point
                                 NeuroService.debug.setHeartRate(heartRate);
+                                Double hrv = calculateHRV(newBeats);
+                                //NeuroService.debug.setHeartBeats(heartBeats);
+                                NeuroService.debug.setHRV(hrv);
                                 NeuroService.debug.recordData();
 
                                 MainActivity.neuroSrv.publish("/" +
@@ -265,6 +277,21 @@ public class HxMService extends Service {
             }
         }
     };
+
+    private Double calculateHRV(int[] newBeats) {
+        Double output;
+        int nn50count = 0;
+        int totalCount = newBeats.length - 2;
+        for (int i = 1; i < totalCount; i++) {
+            int rr1 = newBeats[i] - newBeats[i-1];
+            int rr2 = newBeats[i+1] - newBeats[i];
+            if (Math.abs(rr2-rr1) > 50) {
+                nn50count++;
+            }
+        }
+        output = (double) nn50count/totalCount;
+        return output;
+    }
 
     private void appendHeartBeats(int beatNumber, int[] newBeats){
         // determine the number of heartbeats that occurred

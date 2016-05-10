@@ -4,15 +4,18 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Admin on 1/31/2016.
  */
 public class Debug {
-    Boolean debug = true;
+    Boolean debug = false;
     long timeIn=0;
     int heartRate=0;
     float playbackSpeed=1;
+    private List<Integer> heartBeats;
+    private Double HRV;
 
     public void printLine(String message) {
         if (debug) {
@@ -46,8 +49,10 @@ public class Debug {
             // BufferedWriter for performance, true to set append to file flag
             BufferedWriter buf = new BufferedWriter(new FileWriter(logFile, true));
             // Timestamp    Heart Rate   Current Playback Speed
-            String text = Long.toString(System.currentTimeMillis()) + "\t" + heartRate + "\t"
-                    + playbackSpeed;
+            //String text = Long.toString(System.currentTimeMillis()) + "\t" + heartRate + "\t"
+            //        + playbackSpeed;
+            //String text = Long.toString(System.currentTimeMillis()) + "\t" + heartBeats;
+            String text = Long.toString(System.currentTimeMillis()) + "\t" + HRV;
             buf.append(text);
             buf.newLine();
             buf.close();
@@ -87,5 +92,13 @@ public class Debug {
 
     public void setPlaybackSpeed(float playbackSpeed) {
         this.playbackSpeed = playbackSpeed;
+    }
+
+    public void setHeartBeats(List<Integer> heartBeats) {
+        this.heartBeats = heartBeats;
+    }
+
+    public void setHRV(Double HRV) {
+        this.HRV = HRV;
     }
 }

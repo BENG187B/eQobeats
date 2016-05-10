@@ -4,7 +4,6 @@
     tools:context="colburnsoftworks.quspmusic.MainActivity">
     <item
         android:id="@+id/action_end"
-        android:icon="@drawable/end"
         android:orderInCategory="2"
         app:showAsAction="always"
         android:title="End"/>
